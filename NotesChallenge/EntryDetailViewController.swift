@@ -46,23 +46,13 @@ class EntryDetailViewController: UIViewController {
         guard let entry = entry else {
             let NewEntry = Entry(timeStamp: NSDate(), bodyText: bodyTextView.text ?? "")
             EntryController.sharedController.addEntry(NewEntry)
+            self.navigationController?.popToRootViewControllerAnimated(true)
             return
         }
         entry.bodyText = bodyTextView.text ?? ""
         
         self.navigationController?.popToRootViewControllerAnimated(true)
-        //here we will add save code
+        EntryController.sharedController.saveFromPersistentStorage()
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

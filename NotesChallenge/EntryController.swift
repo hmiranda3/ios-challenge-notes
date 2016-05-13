@@ -10,15 +10,19 @@ import Foundation
 
 class EntryController {
     
+    private let entryKey = "entry"
+    
     static var sharedController = EntryController()
     
     var entries = [Entry]()
     
-    
+    init() {
+        loadFromPersistentStore()
+    }
     
     func addEntry(entry: Entry) {
         entries.append(entry)
-        //here we will add a saveToPersistantCode
+        saveFromPersistentStorage()
     }
     
     func removeEntry(entry: Entry) {
@@ -26,7 +30,18 @@ class EntryController {
             return
         }
         entries.removeAtIndex(indexOfEntry)
-        //Here we will add a saveToPersistentCode
+        saveFromPersistentStorage()
+    }
+    
+    func saveFromPersistentStorage() {
+        NSUserDefaults.standardUserDefaults().setObject(entries.map({$0.dictionaryCopy}), forKey: entryKey)
+    }
+    
+    func loadFromPersistentStore() {
+        guard let entryDictionary = NSUserDefaults.standardUserDefaults().objectForKey(entryKey) as? [[String: AnyObject]] else {
+            return
+        }
+        entries = entryDictionary.flatMap({Entry(dictionary: $0)})
     }
 }
 
