@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="n3Z-za-Jaj">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notes-->
+        <scene sceneID="1rr-pP-ocC">
+            <objects>
+                <tableViewController id="ufj-Ux-h0J" customClass="EntryListTableTableViewController" customModule="NotesChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lkd-b1-U25">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryTitleCell" id="Ywv-rp-wwO">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ywv-rp-wwO" id="kvC-wm-9cV">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="yEw-Hy-Iro" kind="show" identifier="toDetailFromCell" id="4xM-RE-GJF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ufj-Ux-h0J" id="f0x-Sc-emE"/>
+                            <outlet property="delegate" destination="ufj-Ux-h0J" id="PLT-ql-Tw8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Notes" id="NCq-Me-nJt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zpj-1x-4sa">
+                            <connections>
+                                <segue destination="yEw-Hy-Iro" kind="show" identifier="toDetailFromAdd" id="reM-mz-5ca"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b7V-4h-905" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="434"/>
+        </scene>
+        <!--Entry Detail View Controller-->
+        <scene sceneID="G2i-v6-E15">
+            <objects>
+                <viewController id="yEw-Hy-Iro" customClass="EntryDetailViewController" customModule="NotesChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WSG-xX-buh"/>
+                        <viewControllerLayoutGuide type="bottom" id="vab-hb-2hA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Lk-0Y-fnI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="p1c-PH-2I8">
+                                <rect key="frame" x="20" y="72" width="560" height="456"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p1c-PH-2I8" firstAttribute="centerY" secondItem="7Lk-0Y-fnI" secondAttribute="centerY" id="dbR-qS-HMQ"/>
+                            <constraint firstItem="p1c-PH-2I8" firstAttribute="leading" secondItem="7Lk-0Y-fnI" secondAttribute="leadingMargin" id="ikg-ng-RmD"/>
+                            <constraint firstItem="p1c-PH-2I8" firstAttribute="top" secondItem="WSG-xX-buh" secondAttribute="bottom" constant="8" symbolic="YES" id="kAU-eM-5wV"/>
+                            <constraint firstItem="p1c-PH-2I8" firstAttribute="trailing" secondItem="7Lk-0Y-fnI" secondAttribute="trailingMargin" id="ou6-Xq-Zum"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fzD-3z-4Fc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xXw-gX-62U">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="yEw-Hy-Iro" id="Ymc-Rb-j3L"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bodyTextView" destination="p1c-PH-2I8" id="vuW-lC-UzL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VG8-Mh-Hbt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1778" y="434"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7D8-uf-yp6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n3Z-za-Jaj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y2r-IY-Vce">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ufj-Ux-h0J" kind="relationship" relationship="rootViewController" id="s2J-4T-I9Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qfV-Fc-ZLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="202" y="434"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4xM-RE-GJF"/>
+    </inferredMetricsTieBreakers>
+</document>
